@@ -12,14 +12,14 @@ public class QQLoginCallBack : IHttpHandler
         string method = context.Request["method"] ?? string.Empty;
         if (method == "")
         {
-            //QQLoginData LoginData = QQLogin.GetQQLoginData("申请QQ登录成功后，分配给网站的appid。", "申请QQ登录成功后，分配给网站的appkey。", "回调地址");
-            //context.Response.Write(LoginData.QQ.nickname);
+            QQLoginData LoginData = QQLogin.GetQQLoginData("申请QQ登录成功后，分配给网站的appid。", "申请QQ登录成功后，分配给网站的appkey。", "回调地址");
+            context.Response.Write(LoginData.QQ.nickname);
         }
         else {
             MethodInfo mi = this.GetType().GetMethod(method);
             mi.Invoke(this, new object[] { context });
         }
-        
+
     }
     public void Login(HttpContext context)
     {
